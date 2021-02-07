@@ -21,4 +21,8 @@ public class BlogPostService {
     public BlogPost getPost(Long id){
         return fakeDB.getPost(id);
     }
+
+    public void create(BlogPost blogPost) {
+        fakeDB.save(blogPost);
+    }
 }

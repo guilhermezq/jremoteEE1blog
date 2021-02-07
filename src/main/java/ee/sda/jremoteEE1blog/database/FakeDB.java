@@ -8,13 +8,14 @@ import java.util.List;
 
 @Component
 public class FakeDB {
+/*
+This is just a fake database. It doesnt persist de objects.
+ */
+    List<BlogPost> allPosts = new ArrayList<>();
+    Long idIndex = 0L;
 
     public List<BlogPost> getAllPosts(){
-        List<BlogPost> allPosts = new ArrayList<>();
-        allPosts.add(BlogPost.builder().id(1L).title("first post").text("first post").build());
-        allPosts.add(BlogPost.builder().id(2L).title("second post").text("second post").build());
-        allPosts.add(BlogPost.builder().id(3L).title("third post").text("third post").build());
-        return allPosts;
+        return this.allPosts;
     }
 
     public BlogPost getPost(Long id) {
@@ -24,5 +25,11 @@ public class FakeDB {
             }
         }
         return null;
+    }
+
+    public void save(BlogPost blogPost) {
+        blogPost.setId(idIndex);
+        this.allPosts.add(blogPost);
+        idIndex++;
     }
 }

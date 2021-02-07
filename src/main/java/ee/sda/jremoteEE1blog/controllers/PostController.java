@@ -4,20 +4,22 @@ import ee.sda.jremoteEE1blog.models.BlogPost;
 import ee.sda.jremoteEE1blog.services.BlogPostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
+@RequestMapping("/posts")
 public class PostController {
 
     final private BlogPostService service;
 
     //Get Only all posts
-    @GetMapping("/posts/all")
+    @GetMapping("/all")
     ModelAndView getAllPosts(){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("posts");
@@ -28,7 +30,7 @@ public class PostController {
     }
 
     //Get Only one post
-    @GetMapping("/posts/{id}")
+    @GetMapping("/{id}")
     ModelAndView getPost(@PathVariable("id") Long postId){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("post");
@@ -38,6 +40,17 @@ public class PostController {
         return modelAndView;
     }
 
+    @GetMapping("/create")
+    String createPost(Model model){
+        model.addAttribute("blogPost", new BlogPost());
+        return "createpost";
+    }
+
+    @PostMapping("/create")
+    RedirectView create(@ModelAttribute BlogPost blogPost){
+        service.create(blogPost);
+        return new RedirectView("/posts/all");
+    }
 
 
 
