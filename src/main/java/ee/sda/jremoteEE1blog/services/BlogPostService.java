@@ -1,7 +1,8 @@
 package ee.sda.jremoteEE1blog.services;
 
-import ee.sda.jremoteEE1blog.database.FakeDB;
+
 import ee.sda.jremoteEE1blog.models.BlogPost;
+import ee.sda.jremoteEE1blog.repositories.BlogPostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,20 +10,22 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class BlogPostService {
 
-    final private FakeDB fakeDB;
+    //BlogPostRepository is extended from JPARepository. And so, the bean is
+    //created ****** BY SPRING ********
+    @Autowired
+    private BlogPostRepository repository;
 
     public List<BlogPost> getAllPosts(){
-        return fakeDB.getAllPosts();
+        return repository.findAll();
     }
 
     public BlogPost getPost(Long id){
-        return fakeDB.getPost(id);
+        return repository.findById(id).get();
     }
 
     public void create(BlogPost blogPost) {
-        fakeDB.save(blogPost);
+        repository.save(blogPost);
     }
 }
