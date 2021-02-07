@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <title>Create Post</title>
+<head th:replace="base :: imports(pageTitle = 'Create Post')">
 </head>
 <body>
+<div class="container">
 <form action="#" th:action="@{/posts/create}" th:object="${blogPost}" method="post">
-    <input type="text" name="title" th:field="*{title}">
-    <textarea th:field="*{text}"></textarea>
+    <div class="form-group">
+        <label>Title</label>
+    <input type="text" name="title" th:field="*{title}" class="form-control">
+    </div>
+    <div class="form-group">
+        <label>Text</label>
+    <textarea th:field="*{text}" class="form-control"></textarea>
+    </div>
     <input type="submit">
 </form>
+</div>
 </body>
 </html>

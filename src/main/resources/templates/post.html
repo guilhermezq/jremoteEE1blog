@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <link rel="stylesheet" href="/style.css">
-    <title>Posts Page</title>
+<head th:replace="base :: imports(pageTitle = 'Post')">
 </head>
 <body>
 <h1 th:text="${title}"></h1>
