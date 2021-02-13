@@ -18,7 +18,8 @@ public class BlogPostService {
     private BlogPostRepository repository;
 
     public List<BlogPost> getAllPosts(){
-        return repository.findAll();
+        throw new IllegalStateException();
+
     }
 
     public BlogPost getPost(Long id){
