@@ -1,8 +1,11 @@
 package ee.sda.jremoteEE1blog.controllers;
 
 import ee.sda.jremoteEE1blog.models.BlogPost;
+import ee.sda.jremoteEE1blog.properties.ApplicationProperties;
 import ee.sda.jremoteEE1blog.services.BlogPostService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,14 +19,20 @@ import java.util.List;
 @RequestMapping("/posts")
 public class PostController {
 
+
+    final private ApplicationProperties applicationName;
     final private BlogPostService service;
+
+    @Autowired
+    ModelAndView modelAndView;
 
     //Get Only all posts
     @GetMapping("/all")
-    ModelAndView getAllPosts(){
-        ModelAndView modelAndView = new ModelAndView();
+    ModelAndView getAllPosts(Model model){
         modelAndView.setViewName("posts");
-        modelAndView.addObject("title", "All Posts: ");
+        modelAndView.addObject("title", applicationName.getWxy());
+        // this is how we change the title of our page using properties
+        //modelAndView.addObject("title", applicationName.getXyz());
         List<BlogPost> posts = service.getAllPosts();
         modelAndView.addObject("posts", posts);
         return modelAndView;

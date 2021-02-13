@@ -1,0 +1,13 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:mysql://localhost:3306/jremoteEE1blog
+    username: root
+    password: root
+abc:
+  xyz: Our Blog
+  wxy: Durant is King
+
+
