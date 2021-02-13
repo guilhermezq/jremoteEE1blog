@@ -7,7 +7,5 @@ spring:
     username: root
     password: ${database.password:root}
 abc:
-  xyz: Our Blog
-  wxy: Durant is King
-
-
+  xyz: Our Blog on QA
+  wxy: Our Blog on QA

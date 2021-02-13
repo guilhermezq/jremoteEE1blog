@@ -2,6 +2,7 @@ package ee.sda.jremoteEE1blog.controllers;
 
 import ee.sda.jremoteEE1blog.models.BlogPost;
 import ee.sda.jremoteEE1blog.properties.ApplicationProperties;
+import ee.sda.jremoteEE1blog.properties.ApplicationPropertiesInterf;
 import ee.sda.jremoteEE1blog.services.BlogPostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ import java.util.List;
 public class PostController {
 
 
-    final private ApplicationProperties applicationName;
+    final private ApplicationPropertiesInterf applicationName;
     final private BlogPostService service;
 
     @Autowired
